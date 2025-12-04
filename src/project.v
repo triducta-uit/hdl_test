@@ -7,7 +7,7 @@
 
 module tt_um_asiclab_example (
     input  wire [7:0] ui_in,    // Dedicated inputs
-    output wire [7:0] uo_out,   // Dedicated outputs
+    output reg [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
     output wire [7:0] uio_out,  // IOs: Output path
     output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
@@ -17,16 +17,15 @@ module tt_um_asiclab_example (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = 0;
   assign uio_out = 0;
   assign uio_oe  = 0;
 
   // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, ui_in, 1'b0};
+    wire _unused = &{ena, uio_in, 1'b0};
 
   reg [7:0] PC;
   reg [7:0] regfile[0:3];             
-  reg [7:0] memory[0:31];      
+    reg [7:0] memory[0:31];      
   reg [7:0] alu_result;             
   reg jump;
   wire [7:0] PC_next = PC + 1;
@@ -83,9 +82,11 @@ module tt_um_asiclab_example (
     end else begin
       PC <= PC_new; 
       jump <= 0;
+        memory[30] <= ui_in;
+        uo_out <= memory[31];
       case (opcode)
         2'b00: begin // LD reg, [imm]
-          regfile[regA] <= memory[{4'b0001, imm4}];  
+          regfile[regA] <= memory[{4'b0001, imm4}];
         end
         2'b01: begin // ST reg, [imm]
           memory[{4'b0001, imm4}] <= regfile[regA];  
