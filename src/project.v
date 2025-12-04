@@ -78,6 +78,7 @@ module tt_um_asiclab_example (
         memory[29] <= 0;
         memory[30] <= 0;
         memory[31] <= 0;
+        alu_result <= 0;
     end else begin
       PC <= PC_new; 
       jump <= 0;
