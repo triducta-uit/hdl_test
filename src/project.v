@@ -43,6 +43,41 @@ module tt_um_asiclab_example (
     if (rst_n) begin
       PC <= 8'd0;
       regfile[0] <= 0;
+      regfile[1] <= 0;
+      regfile[2] <= 0;
+      regfile[3] <= 0;
+        memory[0] <= 0;
+        memory[1] <= 0;
+        memory[2] <= 0;
+        memory[3] <= 0;
+        memory[4] <= 0;
+        memory[5] <= 0;
+        memory[6] <= 0;
+        memory[7] <= 0;
+        memory[8] <= 0;
+        memory[9] <= 0;
+        memory[10] <= 0;
+        memory[11] <= 0;
+        memory[12] <= 0;
+        memory[13] <= 0;
+        memory[14] <= 0;
+        memory[15] <= 0;
+        memory[16] <= 0;
+        memory[17] <= 0;
+        memory[18] <= 0;
+        memory[19] <= 0;
+        memory[20] <= 0;
+        memory[21] <= 0;
+        memory[22] <= 0;
+        memory[23] <= 0;
+        memory[24] <= 0;
+        memory[25] <= 0;
+        memory[26] <= 0;
+        memory[27] <= 0;
+        memory[28] <= 0;
+        memory[29] <= 0;
+        memory[30] <= 0;
+        memory[31] <= 0;
     end else begin
       PC <= PC_new; 
       jump <= 0;
@@ -55,10 +90,10 @@ module tt_um_asiclab_example (
         end
           2'b10: begin // ALU
             case (func)
-              2'b00: alu_result = regfile[regA] + regfile[regB]; // ADD
-              2'b01: alu_result = regfile[regA] - regfile[regB]; // SUB
-              2'b10: alu_result = regfile[regA] & regfile[regB]; // AND
-              2'b11: alu_result = regfile[regA] ^ regfile[regB]; // XOR
+              2'b00: alu_result <= regfile[regA] + regfile[regB]; // ADD
+              2'b01: alu_result <= regfile[regA] - regfile[regB]; // SUB
+              2'b10: alu_result <= regfile[regA] & regfile[regB]; // AND
+              2'b11: alu_result <= regfile[regA] ^ regfile[regB]; // XOR
             endcase
             regfile[regA] <= alu_result;
           end
