@@ -39,7 +39,7 @@ module tt_um_asiclab_example (
   wire [1:0] func   = instr[1:0];      // phân vùng địa chỉ mã chức năng
   wire [3:0] imm4   = instr[3:0];    // phân vùng địa chỉ mem/nhảy
     
-  always @(posedge clk or posedge rst_n) begin
+    always @(posedge clk or negedge rst_n) begin
     if (rst_n) begin
       PC <= 8'd0;
       regfile[0] <= 0;
